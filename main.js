@@ -11,8 +11,8 @@ function getWebusb(filters) {
   })
 }
 x.onclick = function() {
-  const vid = document.getElementById('js-vid').value
-  const pid = document.getElementById('js-pid').value
+  const vid = parseInt(document.getElementById('js-vid').value, 16)
+  const pid = parseInt(document.getElementById('js-pid').value, 16)
 
   navigator.usb
     .requestDevice({ filters: [{ vendorId: vid, productId: pid }] })
