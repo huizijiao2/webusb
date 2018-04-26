@@ -1,10 +1,23 @@
-const x = document.getElementById('js-input')
+const x = document.getElementById('js-button')
+
+function getWebusb(filters) {
+  navigator.usb.getDevices().then(function(devices) {
+    if (devices.length) {
+      devices.map(device => {
+        console.log(device.productName)
+        console.log(device.manufacturerName)
+      })
+    }
+    return navigator.usb.requestDevice({ filters: filters })
+  })
+}
 x.onclick = function() {
-  window.navigator.usb
-    .requestDevice({ filters: [{ vendorId: 0483 }] })
+  const vid = document.getElementById('js-vid').value
+  const pid = document.getElementById('js-pid').value
+
+  getWebusb([{ vendorId: vid, productId: pid }])
     .then(device => {
-      console.log(device) // "Arduino Micro"
-      console.log(device) // "Arduino LLC"
+      console.log(device)
     })
     .catch(error => {
       console.log(error)
