@@ -22,4 +22,12 @@ x.onclick = function() {
     .catch(error => {
       console.log(error)
     })
+  navigator.usb.getDevices().then(function(devices) {
+    if (devices.length) {
+      devices.map(device => {
+        console.log(device.productName)
+        console.log(device.manufacturerName)
+      })
+    }
+  })
 }
