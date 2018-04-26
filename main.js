@@ -8,19 +8,18 @@ function getWebusb(filters) {
         console.log(device.manufacturerName)
       })
     }
-    navigator.usb
-      .requestDevice({ filters: filters })
-      .then(device => {
-        console.log(device)
-      })
-      .catch(error => {
-        console.log(error)
-      })
   })
 }
 x.onclick = function() {
   const vid = document.getElementById('js-vid').value
   const pid = document.getElementById('js-pid').value
 
-  getWebusb([{ vendorId: vid, productId: pid }])
+  navigator.usb
+    .requestDevice({ filters: [{ vendorId: vid, productId: pid }] })
+    .then(device => {
+      console.log(device)
+    })
+    .catch(error => {
+      console.log(error)
+    })
 }
