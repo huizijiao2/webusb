@@ -1,0 +1,19 @@
+{
+  "name": "webusb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huizijiao2/webusb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huizijiao2/webusb/issues"
+  },
+  "homepage": "https://github.com/huizijiao2/webusb#readme"
+}
