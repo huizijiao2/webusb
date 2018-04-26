@@ -1,6 +1,6 @@
 const x = document.getElementById('js-input')
 x.onclick = function() {
-  navigator.usb
+  window.navigator.usb
     .requestDevice(params)
     .then(device => {
       console.log(device) // "Arduino Micro"
