@@ -8,7 +8,14 @@ function getWebusb(filters) {
         console.log(device.manufacturerName)
       })
     }
-    return navigator.usb.requestDevice({ filters: filters })
+    navigator.usb
+      .requestDevice({ filters: filters })
+      .then(device => {
+        console.log(device)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   })
 }
 x.onclick = function() {
@@ -16,10 +23,4 @@ x.onclick = function() {
   const pid = document.getElementById('js-pid').value
 
   getWebusb([{ vendorId: vid, productId: pid }])
-    .then(device => {
-      console.log(device)
-    })
-    .catch(error => {
-      console.log(error)
-    })
 }
