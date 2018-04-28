@@ -26,13 +26,13 @@ x.onclick = function() {
     .then(() =>
       device.controlTransferOut({
         requestType: 'vendor',
-        recipient: 'interface',
+        recipient: 'device',
         request: 0x01,
         value: 0x0013,
         index: 0x0001
       })
     ) // Ready to receive data
-    .then(() => device.transferIn(1, 6)) // Waiting for 64 bytes of data from endpoint #5.
+    .then(() => device.transferIn(5, 64)) // Waiting for 64 bytes of data from endpoint #5.
     .then(result => {
       let decoder = new TextDecoder()
       console.log('Received: ' + decoder.decode(result.data))
