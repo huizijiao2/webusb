@@ -18,6 +18,23 @@ x.onclick = function() {
     .requestDevice({ filters: [{ vendorId: vid, productId: pid }] })
     .then(device => {
       console.log(device)
+      return device.open()
+    })
+    .then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
+    .then(() => device.claimInterface(1)) // Request exclusive control over interface #2.
+    .then(() =>
+      device.controlTransferOut({
+        requestType: 'vendor',
+        recipient: 'interface',
+        request: 0x01,
+        value: 0x0013,
+        index: 0x0001
+      })
+    ) // Ready to receive data
+    .then(() => device.transferIn(1, 6)) // Waiting for 64 bytes of data from endpoint #5.
+    .then(result => {
+      let decoder = new TextDecoder()
+      console.log('Received: ' + decoder.decode(result.data))
     })
     .catch(error => {
       console.log(error)
