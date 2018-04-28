@@ -13,11 +13,12 @@ function getWebusb(filters) {
 x.onclick = function() {
   const vid = parseInt(document.getElementById('js-vid').value, 16)
   const pid = parseInt(document.getElementById('js-pid').value, 16)
+  let device = null
 
   navigator.usb
     .requestDevice({ filters: [{ vendorId: vid, productId: pid }] })
-    .then(device => {
-      console.log(device)
+    .then(selectedDevice => {
+      device = selectedDevice
       return device.open()
     })
     .then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
