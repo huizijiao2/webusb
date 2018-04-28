@@ -22,12 +22,12 @@ x.onclick = function() {
       return device.open()
     })
     .then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
-    .then(() => device.claimInterface(1)) // Request exclusive control over interface #2.
+    .then(() => device.claimInterface(2)) // Request exclusive control over interface #2.
     .then(() =>
       device.controlTransferOut({
-        requestType: 'vendor',
+        requestType: 'class',
         recipient: 'interface',
-        request: 0x01,
+        request: 0x03,
         value: 0x0013,
         index: 0x0001
       })
