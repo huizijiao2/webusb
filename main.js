@@ -27,7 +27,7 @@ x.onclick = function() {
       device.controlTransferOut({
         requestType: 'class',
         recipient: 'interface',
-        request: 0x22,
+        request: 0x03,
         value: 0x00,
         index: 0x01
       })
