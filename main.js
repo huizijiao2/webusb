@@ -25,11 +25,11 @@ x.onclick = function() {
     .then(() => device.claimInterface(0)) // Request exclusive control over interface #2.
     .then(() =>
       device.controlTransferOut({
-        requestType: 'standard',
-        recipient: 'endpoint',
-        request: 1,
-        value: 0,
-        index: 129
+        requestType: 'class',
+        recipient: 'interface',
+        request: 0x20,
+        value: 0x03,
+        index: 0x00
       })
     ) // Ready to receive data
     .then(() => {
