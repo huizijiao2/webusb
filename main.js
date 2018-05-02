@@ -34,8 +34,10 @@ x.onclick = function() {
     // ) // Ready to receive data
     .then(() => {
       console.log('transfer in', device)
-      device.transferOut(1, 
-      [0x7E, 0xAA, 0xCC, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x0A])
+      const arr = Buffer.from('0x7EAACC800200000000000D0A')
+      console.log(arr)
+      // new ArrayBuffer([0x7E, 0xAA, 0xCC, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x0A])
+      device.transferOut(1, arr)
     }) // Waiting for 64 bytes of data from endpoint #5.
     .then(result => {
       let decoder = new TextDecoder()
