@@ -32,7 +32,10 @@ x.onclick = function() {
         index: 0x00
       })
     ) // Ready to receive data
-    .then(() => device.transferIn(1, 64)) // Waiting for 64 bytes of data from endpoint #5.
+    .then(() => {
+      console.log('transfer in', device)
+      device.transferIn(1, 64)
+    }) // Waiting for 64 bytes of data from endpoint #5.
     .then(result => {
       let decoder = new TextDecoder()
       console.log('Received: ' + decoder.decode(result.data))
