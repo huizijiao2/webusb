@@ -27,12 +27,12 @@ x.onclick = function() {
       device.controlTransferOut({
         requestType: 'class',
         recipient: 'interface',
-        request: 0x03,
-        value: 0x0013,
-        index: 0x0001
+        request: 0x22,
+        value: 0x01,
+        index: 0x02
       })
     ) // Ready to receive data
-    .then(() => device.transferIn(5, 64)) // Waiting for 64 bytes of data from endpoint #5.
+    .then(() => device.transferIn(1, 64)) // Waiting for 64 bytes of data from endpoint #5.
     .then(result => {
       let decoder = new TextDecoder()
       console.log('Received: ' + decoder.decode(result.data))
