@@ -27,9 +27,9 @@ x.onclick = function() {
       device.controlTransferOut({
         requestType: 'class',
         recipient: 'interface',
-        request: 0x22,
+        request: 0x20,
         value: 0x00,
-        index: 0x00
+        index: 0x01
       })
     ) // Ready to receive data
     .then(() => {
