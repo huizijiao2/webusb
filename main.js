@@ -23,15 +23,15 @@ x.onclick = function() {
     })
     .then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
     .then(() => device.claimInterface(0)) // Request exclusive control over interface #2.
-    .then(() =>
-      device.controlTransferOut({
-        requestType: 'class',
-        recipient: 'interface',
-        request: 0x20,
-        value: 0x00,
-        index: 0x01
-      })
-    ) // Ready to receive data
+    // .then(() =>
+    //   device.controlTransferOut({
+    //     requestType: 'class',
+    //     recipient: 'interface',
+    //     request: 0x20,
+    //     value: 0x00,
+    //     index: 0x01
+    //   })
+    // ) // Ready to receive data
     .then(() => {
       console.log('transfer in', device)
       device.transferIn(1, 64)
