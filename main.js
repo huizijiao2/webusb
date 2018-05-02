@@ -28,7 +28,7 @@ x.onclick = function() {
         requestType: 'class',
         recipient: 'interface',
         request: 0x22,
-        value: 0x01,
+        value: 0x00,
         index: 0x01
       })
     ) // Ready to receive data
