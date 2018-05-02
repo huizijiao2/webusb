@@ -22,16 +22,15 @@ x.onclick = function() {
       return device.open()
     })
     .then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
-    .then(() => console.log(0)) // Request exclusive control over interface #2.
+    .then(() => device.claimInterface(1)) // Request exclusive control over interface #2.
     .then(() =>
-      console.log(device)
-      // device.controlTransferOut({
-      //   requestType: 'class',
-      //   recipient: 'interface',
-      //   request: 0x22,
-      //   value: 0x00,
-      //   index: 0x01
-      // })
+      device.controlTransferOut({
+        requestType: 'class',
+        recipient: 'interface',
+        request: 0x20,
+        value: 0x01,
+        index: 0x01
+      })
     ) // Ready to receive data
     .then(() => device.transferIn(1, 64)) // Waiting for 64 bytes of data from endpoint #5.
     .then(result => {
