@@ -26,10 +26,10 @@ x.onclick = function() {
     .then(() =>
       device.controlTransferOut({
         requestType: 'standard',
-        recipient: 'device',
-        request: 0x06,
-        value: 0302,
-        index: 0409
+        recipient: 'endpoint',
+        request: 1,
+        value: 0,
+        index: 129
       })
     ) // Ready to receive data
     .then(() => {
