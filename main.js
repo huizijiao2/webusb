@@ -29,7 +29,7 @@ x.onclick = function() {
         recipient: 'interface',
         request: 0x20,
         value: 0x01,
-        index: 0x01
+        index: 0x00
       })
     ) // Ready to receive data
     .then(() => device.transferIn(1, 64)) // Waiting for 64 bytes of data from endpoint #5.
