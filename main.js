@@ -11,8 +11,8 @@ function getWebusb(filters) {
   })
 }
 x.onclick = function() {
-  const vid = parseInt('0483', 16)
-  const pid = parseInt('5710', 16)
+  const vid = parseInt('534c', 16)
+  const pid = parseInt('0001', 16)
   let device = null
 
   navigator.usb
