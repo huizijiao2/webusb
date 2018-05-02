@@ -22,7 +22,7 @@ x.onclick = function() {
       return device.open()
     })
     .then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
-    .then(() => console.log(device.configuration.interfaces[0].interfaceNumber)) // Request exclusive control over interface #2.
+    .then(() => console.log(0)) // Request exclusive control over interface #2.
     .then(() =>
       console.log(device)
       // device.controlTransferOut({
