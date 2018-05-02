@@ -24,13 +24,14 @@ x.onclick = function() {
     .then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
     .then(() => device.claimInterface(0)) // Request exclusive control over interface #2.
     .then(() =>
-      device.controlTransferOut({
-        requestType: 'class',
-        recipient: 'interface',
-        request: 0x22,
-        value: 0x00,
-        index: 0x01
-      })
+      console.log(device)
+      // device.controlTransferOut({
+      //   requestType: 'class',
+      //   recipient: 'interface',
+      //   request: 0x22,
+      //   value: 0x00,
+      //   index: 0x01
+      // })
     ) // Ready to receive data
     .then(() => device.transferIn(1, 64)) // Waiting for 64 bytes of data from endpoint #5.
     .then(result => {
