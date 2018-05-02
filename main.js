@@ -21,7 +21,7 @@ x.onclick = function() {
       device = selectedDevice
       return device.open()
     })
-    .then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
+    .then(() => device.selectConfiguration(2)) // Select configuration #1 for the device.
     .then(() => device.claimInterface(0)) // Request exclusive control over interface #2.
     // .then(() =>
     //   device.controlTransferOut({
