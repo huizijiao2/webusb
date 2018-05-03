@@ -20,7 +20,7 @@ x.onclick = function() {
     requestType: 'standard',
     recipient: 'device',
     request: 0x06,
-    value: 0100,
+    value: 0x0100,
     index: 0x00
   }
 
