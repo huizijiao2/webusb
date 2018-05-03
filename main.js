@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', event => {
       // result = await device.controlTransferOut(setPortConfig, config)
       // console.log('set port config:', result)
 
-      const data = new Uint8Array(12)
+      const data = new Uint8Array(64)
       data.set([
         0x7e,
         0xaa,
@@ -153,7 +153,8 @@ document.addEventListener('DOMContentLoaded', event => {
         0x0d,
         0x0a
       ])
-      result = await device.transferOut(0x81, data.buffer)
+      console.log('buffer in', data.buffer)
+      result = await device.transferOut(0x01, data.buffer)
       console.log('mem:', result)
 
       // const timeoutID = window.setTimeout(async () => {
