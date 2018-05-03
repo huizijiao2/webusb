@@ -52,7 +52,7 @@ x.onclick = function() {
       console.log('configurations:', device.configurations)
       console.log('interfaces:', device.configuration.interfaces)
 
-      let result = device.controlTransferOut(openPort)
+      let result = device.controlTransferIn(openPort, 18)
       console.log('open port:', result)
 
       // result = device.controlTransferOut(startPort)
