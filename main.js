@@ -31,6 +31,14 @@ document.addEventListener('DOMContentLoaded', event => {
       index: 0x00
     }
 
+    const getPort3 = {
+      requestType: 'standard',
+      recipient: 'device',
+      request: 0x06,
+      value: 0x0200,
+      index: 0x00
+    }
+
     const startPort = {
       requestType: 'vendor',
       recipient: 'device',
@@ -84,12 +92,11 @@ document.addEventListener('DOMContentLoaded', event => {
       console.log('getPort1 port:', result.data)
 
       result = await device.controlTransferIn(getPort2, 9)
-      const dataView = result.data
-      for (let i=0; i < 9; i++) {
-        console.log(dataView.getInt8(i) + ' ')
-      }
-      console.log('getPort2 port:', dataView.getInt8(2))
+      const bLength = result.data.getInt8(2)
+      console.log('getPort2 port:', result.data)
 
+      result = await device.controlTransferIn(getPort3, bLength)
+      console.log('getPort3 port:', result.data)
 
       result = await device.controlTransferOut(startPort)
       console.log('start port:', result)
