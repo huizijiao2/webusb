@@ -43,7 +43,7 @@ x.onclick = function() {
     .then(() => device.claimInterface(0)) // Request exclusive control over interface #2.
     .then(() => {
       console.log('configurations:', device.configurations)
-      console.log('interfaces:', device.device.configuration.interfaces)
+      console.log('interfaces:', device.configuration.interfaces)
 
       let result = device.controlTransferOut(openPort)
       console.log('open port:', result)
