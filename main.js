@@ -61,7 +61,7 @@ x.onclick = function() {
       return result
     }) // Ready to receive data
     .then(() => {
-      let result = device.transferIn(129, 18)
+      let result = device.transferIn(1, 18)
       console.log('result in', result)
       return result
       // console.log('transfer in', device)
