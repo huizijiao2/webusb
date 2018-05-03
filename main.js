@@ -119,8 +119,8 @@ document.addEventListener('DOMContentLoaded', event => {
       result = await device.controlTransferOut(setPort1)
       console.log('setPort1 port:', result)
 
-      result = await device.controlTransferOut(setPort2)
-      console.log('setPort2 port:', result)
+      // result = await device.controlTransferOut(setPort2)
+      // console.log('setPort2 port:', result)
 
       // result = await device.controlTransferOut(startPort)
       // console.log('start port:', result)
@@ -138,10 +138,23 @@ document.addEventListener('DOMContentLoaded', event => {
       // result = await device.controlTransferOut(setPortConfig, config)
       // console.log('set port config:', result)
 
-      // const data = new Uint8Array(3)
-      // data.set([0x6d, 0x65, 0x6d])
-      // result = await device.transferOut(0x01, data.buffer)
-      // console.log('mem:', result)
+      const data = new Uint8Array(12)
+      data.set([
+        0x7e,
+        0xaa,
+        0xcc,
+        0x80,
+        0x02,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x0d,
+        0x0a
+      ])
+      result = await device.transferOut(0x01, data.buffer)
+      console.log('mem:', result)
 
       // const timeoutID = window.setTimeout(async () => {
       //   console.warn('Device not connected')
@@ -239,20 +252,20 @@ document.addEventListener('DOMContentLoaded', event => {
 //       // console.log('result in', result)
 //       // return result
 //       // console.log('transfer in', device)
-//       // const arr = new Uint8Array([
-//       //   0x7e,
-//       //   0xaa,
-//       //   0xcc,
-//       //   0x80,
-//       //   0x02,
-//       //   0x00,
-//       //   0x00,
-//       //   0x00,
-//       //   0x00,
-//       //   0x00,
-//       //   0x0d,
-//       //   0x0a
-//       // ])
+// const arr = new Uint8Array([
+//   0x7e,
+//   0xaa,
+//   0xcc,
+//   0x80,
+//   0x02,
+//   0x00,
+//   0x00,
+//   0x00,
+//   0x00,
+//   0x00,
+//   0x0d,
+//   0x0a
+// ])
 //       // const arr = Buffer.from('0x7EAACC800200000000000D0A')
 //       // console.log(arr)
 //       // new ArrayBuffer([0x7E, 0xAA, 0xCC, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x0A])
