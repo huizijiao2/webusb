@@ -62,7 +62,7 @@ x.onclick = function() {
     }) // Ready to receive data
     .then(() => {
       let readLoop = () => {
-        device.transferIn(0, 18).then(
+        device.transferIn(1, 18).then(
           result => {
             let textDecoder = new TextDecoder()
             console.log('Received: ' + decoder.decode(result.data))
