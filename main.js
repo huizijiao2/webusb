@@ -45,7 +45,7 @@ x.onclick = function() {
       return device.claimInterface(0)
     })
     .then(() => {
-      console.log(device.selectAlternateInterface(0, 0))
+      console.log('select in', device.selectAlternateInterface(0, 0))
       return device.selectAlternateInterface(0, 0)
     }) // Request exclusive control over interface #2.
     .then(() => {
