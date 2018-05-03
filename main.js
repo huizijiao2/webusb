@@ -74,8 +74,8 @@ document.addEventListener('DOMContentLoaded', event => {
 
       let result = await device.controlTransferIn(openPort, 18)
       let decoder = new TextDecoder() // eslint-disable-line no-undef
-      const data = decoder.decode(result.data)
-      console.log('open port:', data)
+      const dataView = decoder.decode(result.data)
+      console.log('open port:', dataView)
 
       result = await device.controlTransferOut(startPort)
       console.log('start port:', result)
