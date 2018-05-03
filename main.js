@@ -40,7 +40,14 @@ x.onclick = function() {
       return device.open()
     })
     .then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
-    .then(() => device.claimInterface(0)) // Request exclusive control over interface #2.
+    .then(() => {
+      console.log(device.claimInterface(0))
+      return device.claimInterface(0)
+    })
+    .then(() => {
+      console.log(device.selectAlternateInterface(0, 0))
+      return device.selectAlternateInterface(0, 0)
+    }) // Request exclusive control over interface #2.
     .then(() => {
       console.log('configurations:', device.configurations)
       console.log('interfaces:', device.configuration.interfaces)
