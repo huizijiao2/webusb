@@ -15,11 +15,19 @@ document.addEventListener('DOMContentLoaded', event => {
     //   index: 0x03
     // }
 
-    const openPort = {
+    const getPort1 = {
       requestType: 'standard',
       recipient: 'device',
       request: 0x06,
       value: 0x0100,
+      index: 0x00
+    }
+
+    const getPort2 = {
+      requestType: 'standard',
+      recipient: 'device',
+      request: 0x06,
+      value: 0x0200,
       index: 0x00
     }
 
@@ -72,10 +80,14 @@ document.addEventListener('DOMContentLoaded', event => {
       let seResult = await device.selectAlternateInterface(0, 0)
       console.log('selectAlternateInterface result', seResult)
 
-      let result = await device.controlTransferIn(openPort, 18)
+      let result = await device.controlTransferIn(getPort1, 18)
       let decoder = new TextDecoder() // eslint-disable-line no-undef
       const dataView = decoder.decode(result.data)
-      console.log('open port:', dataView)
+      console.log('getPort1 port:', dataView)
+
+      result = await device.controlTransferIn(getPort2, 9)
+      console.log('getPort2 port:', result.data)
+
 
       result = await device.controlTransferOut(startPort)
       console.log('start port:', result)
