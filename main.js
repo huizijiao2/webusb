@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', event => {
       await device.claimInterface(0)
 
       console.log('selectAlternateInterface')
-      result = await device.selectAlternateInterface(0, 0)
-      console.log('selectAlternateInterface result', result)
+      let seResult = await device.selectAlternateInterface(0, 0)
+      console.log('selectAlternateInterface result', seResult)
 
       let result = await device.controlTransferIn(openPort, 18)
       console.log('open port:', result)
