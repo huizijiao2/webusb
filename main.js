@@ -61,7 +61,9 @@ x.onclick = function() {
       return result
     }) // Ready to receive data
     .then(() => {
+      console.log('device', device)
       let readLoop = () => {
+        console.log('readLoop in')
         device.transferIn(1, 18).then(
           result => {
             let textDecoder = new TextDecoder()
@@ -97,10 +99,6 @@ x.onclick = function() {
       // new ArrayBuffer([0x7E, 0xAA, 0xCC, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x0A])
       // device.transferOut(1, arr.buffer)
     }) // Waiting for 64 bytes of data from endpoint #5.
-    .then(result => {
-      let decoder = new TextDecoder()
-      console.log('Received: ' + decoder.decode(result.data))
-    })
     .catch(error => {
       console.log(error)
     })
