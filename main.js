@@ -135,34 +135,34 @@ document.addEventListener('DOMContentLoaded', event => {
       //   0x13,       // xoff (false : 0)
       //   0x00        // UART mode (RS-232 : 0)
       // ])
-      result = await device.controlTransferOut(setPortConfig, config)
-      console.log('set port config:', result)
+      // result = await device.controlTransferOut(setPortConfig, config)
+      // console.log('set port config:', result)
 
-      const data = new Uint8Array(3)
-      data.set([0x6d, 0x65, 0x6d])
-      result = await device.transferOut(0x01, data.buffer)
-      console.log('mem:', result)
+      // const data = new Uint8Array(3)
+      // data.set([0x6d, 0x65, 0x6d])
+      // result = await device.transferOut(0x01, data.buffer)
+      // console.log('mem:', result)
 
-      const timeoutID = window.setTimeout(async () => {
-        console.warn('Device not connected')
-        await close()
-      }, 5000)
+      // const timeoutID = window.setTimeout(async () => {
+      //   console.warn('Device not connected')
+      //   await close()
+      // }, 5000)
 
-      console.log('Receiving...')
-      while (true) {
-        let incoming = await device.transferIn(0x01, 1024)
+      // console.log('Receiving...')
+      // while (true) {
+      //   let incoming = await device.transferIn(0x01, 1024)
 
-        if (incoming.data.byteLength > 0) {
-          clearTimeout(timeoutID)
-          let decoder = new TextDecoder() // eslint-disable-line no-undef
-          const data = decoder.decode(incoming.data)
-          console.log(data)
-          if (data.includes('END')) {
-            break
-          }
-        }
-      }
-      await close()
+      //   if (incoming.data.byteLength > 0) {
+      //     clearTimeout(timeoutID)
+      //     let decoder = new TextDecoder() // eslint-disable-line no-undef
+      //     const data = decoder.decode(incoming.data)
+      //     console.log(data)
+      //     if (data.includes('END')) {
+      //       break
+      //     }
+      //   }
+      // }
+      // await close()
     } catch (error) {
       console.log(error)
     }
