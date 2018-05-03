@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', event => {
   const button = document.getElementById('js-button')
 
-  button.addEventListener('click', async() => {
+  button.addEventListener('click', async () => {
     let device
     const VENDOR_ID = 0x0483
     const PRODUCT_ID = 0x5710
@@ -39,6 +39,22 @@ document.addEventListener('DOMContentLoaded', event => {
       index: 0x00
     }
 
+    const setPort1 = {
+      requestType: 'standard',
+      recipient: 'device',
+      request: 0x09,
+      value: 0x0001,
+      index: 0x00
+    }
+
+    const setPort2 = {
+      requestType: 'class',
+      recipient: 'interface',
+      request: 0x0a,
+      value: 0x0000,
+      index: 0x00
+    }
+
     const startPort = {
       requestType: 'vendor',
       recipient: 'device',
@@ -55,7 +71,7 @@ document.addEventListener('DOMContentLoaded', event => {
       index: 0x03
     }
 
-    async function close () {
+    async function close() {
       let result = await device.controlTransferOut(closePort)
       console.log('close port:', result)
       await device.releaseInterface(0)
@@ -64,10 +80,12 @@ document.addEventListener('DOMContentLoaded', event => {
 
     try {
       device = await navigator.usb.requestDevice({
-        filters: [{
-          vendorId: VENDOR_ID,
-          productId: PRODUCT_ID
-        }]
+        filters: [
+          {
+            vendorId: VENDOR_ID,
+            productId: PRODUCT_ID
+          }
+        ]
       })
 
       console.log('open')
@@ -98,6 +116,12 @@ document.addEventListener('DOMContentLoaded', event => {
       result = await device.controlTransferIn(getPort3, bLength)
       console.log('getPort3 port:', result.data)
 
+      result = await device.controlTransferOut(setPort1)
+      console.log('setPort1 port:', result)
+
+      result = await device.controlTransferOut(setPort2)
+      console.log('setPort2 port:', result)
+
       result = await device.controlTransferOut(startPort)
       console.log('start port:', result)
 
@@ -119,7 +143,7 @@ document.addEventListener('DOMContentLoaded', event => {
       result = await device.transferOut(0x01, data.buffer)
       console.log('mem:', result)
 
-      const timeoutID = window.setTimeout(async() => {
+      const timeoutID = window.setTimeout(async () => {
         console.warn('Device not connected')
         await close()
       }, 5000)
@@ -145,8 +169,6 @@ document.addEventListener('DOMContentLoaded', event => {
   })
 })
 
-
-
 // function getWebusb(filters) {
 //   navigator.usb.getDevices().then(function(devices) {
 //     if (devices.length) {
@@ -161,7 +183,6 @@ document.addEventListener('DOMContentLoaded', event => {
 //   const vid = parseInt('0483', 16)
 //   const pid = parseInt('5710', 16)
 //   let device = null
-
 
 //   const openPort = {
 //     requestType: 'standard',
@@ -178,8 +199,6 @@ document.addEventListener('DOMContentLoaded', event => {
 //     value: 0x00,
 //     index: 0x03
 //   }
-
-
 
 //   navigator.usb
 //     .requestDevice({ filters: [{ vendorId: vid, productId: pid }] })
