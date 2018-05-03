@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', event => {
         0x0d,
         0x0a
       ])
-      result = await device.transferOut(0x01, data.buffer)
+      result = await device.transferOut(0x81, data.buffer)
       console.log('mem:', result)
 
       // const timeoutID = window.setTimeout(async () => {
