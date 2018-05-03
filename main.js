@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', event => {
     const setPort2 = {
       requestType: 'class',
       recipient: 'interface',
-      request: 0x0b,
+      request: 0x0a,
       value: 0x00,
       index: 0x00
     }
@@ -106,15 +106,15 @@ document.addEventListener('DOMContentLoaded', event => {
       let seResult = await device.selectAlternateInterface(0, 0)
       console.log('selectAlternateInterface result', seResult)
 
-      let result = await device.controlTransferIn(getPort1, 18)
-      console.log('getPort1 port:', result.data)
+      // let result = await device.controlTransferIn(getPort1, 18)
+      // console.log('getPort1 port:', result.data)
 
-      result = await device.controlTransferIn(getPort2, 9)
-      const bLength = result.data.getInt8(2)
-      console.log('getPort2 port:', result.data)
+      // result = await device.controlTransferIn(getPort2, 9)
+      // const bLength = result.data.getInt8(2)
+      // console.log('getPort2 port:', result.data)
 
-      result = await device.controlTransferIn(getPort3, bLength)
-      console.log('getPort3 port:', result.data)
+      // result = await device.controlTransferIn(getPort3, bLength)
+      // console.log('getPort3 port:', result.data)
 
       result = await device.controlTransferOut(setPort1)
       console.log('setPort1 port:', result)
