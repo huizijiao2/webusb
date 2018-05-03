@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', event => {
     }
 
     const setPort2 = {
-      requestType: 'vendor',
+      requestType: 'class',
       recipient: 'interface',
-      request: 0x0a,
+      request: 0x0b,
       value: 0x00,
       index: 0x00
     }
