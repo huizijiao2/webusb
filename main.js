@@ -15,7 +15,7 @@ x.onclick = function() {
   const pid = parseInt('5710', 16)
   let device = null
 
-  
+
   const openPort = {
     requestType: 'vendor',
     recipient: 'device',
@@ -45,10 +45,10 @@ x.onclick = function() {
       console.log('configurations:', device.configurations)
       console.log('interfaces:', device.device.configuration.interfaces)
 
-      let result = await device.controlTransferOut(openPort)
+      let result = device.controlTransferOut(openPort)
       console.log('open port:', result)
 
-      result = await device.controlTransferOut(startPort)
+      result = device.controlTransferOut(startPort)
       console.log('start port:', result)
 
       return device.controlTransferOut({
