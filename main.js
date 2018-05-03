@@ -17,11 +17,11 @@ x.onclick = function() {
 
 
   const openPort = {
-    requestType: 'vendor',
+    requestType: 'standard',
     recipient: 'device',
     request: 0x06,
-    value: 0x89,
-    index: 0x03
+    value: 0100,
+    index: 0x00
   }
 
   const startPort = {
@@ -31,6 +31,7 @@ x.onclick = function() {
     value: 0x00,
     index: 0x03
   }
+
 
 
   navigator.usb
@@ -51,19 +52,13 @@ x.onclick = function() {
       console.log('configurations:', device.configurations)
       console.log('interfaces:', device.configuration.interfaces)
 
-      let result = device.controlTransferOut(openPort)
+      let result = device.controlTransferIn(openPort, 18)
       console.log('open port:', result)
 
-      result = device.controlTransferOut(startPort)
-      console.log('start port:', result)
+      // result = device.controlTransferOut(startPort)
+      // console.log('start port:', result)
 
-      return device.controlTransferOut({
-        requestType: 'class',
-        recipient: 'interface',
-        request: 0x22,
-        value: 0x01,
-        index: 0x03
-      })
+      return result
     }) // Ready to receive data
     .then(() => {
       console.log('transfer in', device)
