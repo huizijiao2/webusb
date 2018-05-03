@@ -73,7 +73,9 @@ document.addEventListener('DOMContentLoaded', event => {
       console.log('selectAlternateInterface result', seResult)
 
       let result = await device.controlTransferIn(openPort, 18)
-      console.log('open port:', result)
+      let decoder = new TextDecoder() // eslint-disable-line no-undef
+      const data = decoder.decode(result.data)
+      console.log('open port:', data)
 
       result = await device.controlTransferOut(startPort)
       console.log('start port:', result)
