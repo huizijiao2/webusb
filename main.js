@@ -85,6 +85,9 @@ document.addEventListener('DOMContentLoaded', event => {
 
       result = await device.controlTransferIn(getPort2, 9)
       const dataView = result.data
+      for (let i=0; i < 9; i++) {
+        console.log(dataView.getInt8(i) + ' ')
+      }
       console.log('getPort2 port:', dataView.getInt8(2))
 
 
