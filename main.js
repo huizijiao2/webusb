@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', event => {
       requestType: 'class',
       recipient: 'interface',
       request: 0x0a,
-      value: 0x0000,
+      value: 0x00,
       index: 0x00
     }
 
