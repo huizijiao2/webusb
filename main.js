@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', event => {
 
       // console.log('Receiving...')
       while (true) {
-        let incoming = await device.transferIn(0x81, 64)
+        let incoming = await device.transferIn(0x01, 64)
 
         if (incoming.data.byteLength > 0) {
           clearTimeout(timeoutID)
