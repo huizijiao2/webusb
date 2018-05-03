@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', event => {
     }
 
     const setPort2 = {
-      requestType: 'class',
+      requestType: 'vendor',
       recipient: 'interface',
       request: 0x0a,
       value: 0x00,
@@ -122,8 +122,8 @@ document.addEventListener('DOMContentLoaded', event => {
       result = await device.controlTransferOut(setPort2)
       console.log('setPort2 port:', result)
 
-      result = await device.controlTransferOut(startPort)
-      console.log('start port:', result)
+      // result = await device.controlTransferOut(startPort)
+      // console.log('start port:', result)
 
       // config.set([
       //   0x00, 0x30, // baud rate (19200 : 0x0030)
