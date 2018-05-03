@@ -61,7 +61,18 @@ x.onclick = function() {
       return result
     }) // Ready to receive data
     .then(() => {
-      let result = device.transferIn(1, 64)
+      // let readLoop = () => {
+      //   device.transferIn(0, 64).then(
+      //     result => {
+      //       let textDecoder = new TextDecoder()
+      //       readLoop()
+      //     },
+      //     error => {
+      //       this.onReceiveError(error)
+      //     }
+      //   )
+      // }
+      let result = device.transferIn(0, 64)
       console.log('result in', result)
       return result
       // console.log('transfer in', device)
