@@ -81,13 +81,11 @@ document.addEventListener('DOMContentLoaded', event => {
       console.log('selectAlternateInterface result', seResult)
 
       let result = await device.controlTransferIn(getPort1, 18)
-      let decoder = new TextDecoder() // eslint-disable-line no-undef
-      const dataView = decoder.decode(result.data)
-      console.log('getPort1 port:', dataView)
+      console.log('getPort1 port:', result.data)
 
       result = await device.controlTransferIn(getPort2, 9)
-      console.log('getPort2 port:', result.data)
-      console.log('getPort2 port:', typeof result.data)
+      const dataView = result.data
+      console.log('getPort2 port:', dataView.getUint16(2))
 
 
       result = await device.controlTransferOut(startPort)
