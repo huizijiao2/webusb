@@ -61,20 +61,22 @@ x.onclick = function() {
       return result
     }) // Ready to receive data
     .then(() => {
-      // let readLoop = () => {
-      //   device.transferIn(0, 64).then(
-      //     result => {
-      //       let textDecoder = new TextDecoder()
-      //       readLoop()
-      //     },
-      //     error => {
-      //       this.onReceiveError(error)
-      //     }
-      //   )
-      // }
-      let result = device.transferIn(0, 64)
-      console.log('result in', result)
-      return result
+      let readLoop = () => {
+        device.transferIn(0x81, 64).then(
+          result => {
+            let textDecoder = new TextDecoder()
+            console.log('Received: ' + decoder.decode(result.data))
+            readLoop()
+          },
+          error => {
+            console.log('error in', error)
+          }
+        )
+      }
+      readLoop()
+      // let result = device.transferIn(0, 64)
+      // console.log('result in', result)
+      // return result
       // console.log('transfer in', device)
       // const arr = new Uint8Array([
       //   0x7e,
