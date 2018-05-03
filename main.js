@@ -11,9 +11,27 @@ function getWebusb(filters) {
   })
 }
 x.onclick = function() {
-  const vid = parseInt('534c', 16)
-  const pid = parseInt('0001', 16)
+  const vid = parseInt('0483', 16)
+  const pid = parseInt('5710', 16)
   let device = null
+
+  
+  const openPort = {
+    requestType: 'vendor',
+    recipient: 'device',
+    request: 0x06,
+    value: 0x89,
+    index: 0x03
+  }
+
+  const startPort = {
+    requestType: 'vendor',
+    recipient: 'device',
+    request: 0x08,
+    value: 0x00,
+    index: 0x03
+  }
+
 
   navigator.usb
     .requestDevice({ filters: [{ vendorId: vid, productId: pid }] })
@@ -23,18 +41,40 @@ x.onclick = function() {
     })
     .then(() => device.selectConfiguration(1)) // Select configuration #1 for the device.
     .then(() => device.claimInterface(0)) // Request exclusive control over interface #2.
-    .then(() =>
-      device.controlTransferOut({
+    .then(() => {
+      console.log('configurations:', device.configurations)
+      console.log('interfaces:', device.device.configuration.interfaces)
+
+      let result = await device.controlTransferOut(openPort)
+      console.log('open port:', result)
+
+      result = await device.controlTransferOut(startPort)
+      console.log('start port:', result)
+
+      return device.controlTransferOut({
         requestType: 'class',
         recipient: 'interface',
-        request: 0x20,
-        value: 0x00,
+        request: 0x22,
+        value: 0x01,
         index: 0x03
       })
-    ) // Ready to receive data
+    }) // Ready to receive data
     .then(() => {
       console.log('transfer in', device)
-      const arr = new Uint8Array([0x7E, 0xAA, 0xCC, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x0A])
+      const arr = new Uint8Array([
+        0x7e,
+        0xaa,
+        0xcc,
+        0x80,
+        0x02,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x0d,
+        0x0a
+      ])
       // const arr = Buffer.from('0x7EAACC800200000000000D0A')
       // console.log(arr)
       // new ArrayBuffer([0x7E, 0xAA, 0xCC, 0x80, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x0A])
